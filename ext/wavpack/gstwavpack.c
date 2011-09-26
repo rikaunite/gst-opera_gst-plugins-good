@@ -45,8 +45,10 @@ plugin_init (GstPlugin * plugin)
 #endif
 
   return (gst_wavpack_parse_plugin_init (plugin)
-      && gst_wavpack_dec_plugin_init (plugin)
-      && gst_wavpack_enc_plugin_init (plugin));
+#ifndef OPERA_MINIMAL_GST
+      && gst_wavpack_enc_plugin_init (plugin)
+#endif /* OPERA_MINIMAL_GST */
+      && gst_wavpack_dec_plugin_init (plugin));
 }
 
 GST_PLUGIN_DEFINE (GST_VERSION_MAJOR,
